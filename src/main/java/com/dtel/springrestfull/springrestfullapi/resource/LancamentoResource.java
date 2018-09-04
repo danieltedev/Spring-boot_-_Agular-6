@@ -7,6 +7,7 @@ import com.dtel.springrestfull.springrestfullapi.event.ResourceCreateEvent;
 import com.dtel.springrestfull.springrestfullapi.model.Lancamento;
 import com.dtel.springrestfull.springrestfullapi.repository.LancamentoRepository;
 import com.dtel.springrestfull.springrestfullapi.repository.filter.LancamentoFilter;
+import com.dtel.springrestfull.springrestfullapi.repository.projection.ResumoLancamento;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -36,6 +37,11 @@ public class LancamentoResource {
     @GetMapping
     public Page<Lancamento> pesquisar(LancamentoFilter filter, Pageable pageable) {
         return lancamentoRepository.filtrar(filter, pageable);
+    }
+
+    @GetMapping(params = "resumo")
+    public Page<ResumoLancamento> resumo(LancamentoFilter filter, Pageable pageable) {
+        return lancamentoRepository.resumo(filter, pageable);
     }
 
     @PostMapping
