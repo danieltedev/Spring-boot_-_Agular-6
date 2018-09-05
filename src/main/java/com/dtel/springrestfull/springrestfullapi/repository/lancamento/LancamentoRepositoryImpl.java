@@ -51,7 +51,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
         this.init(ResumoLancamento.class, ResumoLancamento.class);
 
         this.builder.createQuery(ResumoLancamento.class)
-            .select(this.builder.construct(ResumoLancamento.class, 
+            .select(this.builder.construct(ResumoLancamento.class,
                 this.root.get(Lancamento.class.getDeclaredFields()[0].getName()),
                 this.root.get(Lancamento.class.getDeclaredFields()[1].getName()),
                 this.root.get(Lancamento.class.getDeclaredFields()[2].getName()),

@@ -4,6 +4,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dtel.springrestfull.springrestfullapi.config.property.DtelApiProperty;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -21,6 +24,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  */
 @ControllerAdvice
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
+
+    @Autowired
+    private DtelApiProperty dtelApiProperty;
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
@@ -52,7 +58,7 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
             HttpServletResponse servletResponse) {
         Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
         refreshTokenCookie.setHttpOnly(true);
-        refreshTokenCookie.setSecure(false); // mudar para true em produção
+        refreshTokenCookie.setSecure(dtelApiProperty.getSeguranca().isEnableHttps()); 
         refreshTokenCookie.setPath(servletRequest.getContextPath() + "/oauth/token");
         refreshTokenCookie.setMaxAge(2595000);
         servletResponse.addCookie(refreshTokenCookie);
