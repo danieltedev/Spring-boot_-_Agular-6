@@ -7,7 +7,7 @@ CREATE TABLE usuario (
 
 CREATE TABLE permissao (
     id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    descricao VARCHAR(50) NOT NULL
+    descricao VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE usuario_permissao (
@@ -18,19 +18,19 @@ CREATE TABLE usuario_permissao (
     FOREIGN KEY (id_permissao) REFERENCES permissao(id)
 );
 
-INSERT INTO usuario (id, nome, email, senha) values (1, 'Administrador', 'administrador@dtel.com', '{bcrypt}$2a$10$X607ZPhQ4EgGNaYKt3n4SQNjIv9zc.VMWEuha7oLAL5IvcL5.');
-INSERT INTO usuario (id, nome, email, senha) values (1, 'Antonio Carlos', 'antonio.carlos@dtel.com', '{bcrypt}$2a$10$X607ZPhQ4EgGNaYKt3n4SQNjIv9zc.VMWEuha7oLAL5IvcL5.');
+INSERT INTO usuario (nome, email, senha) values ('Administrador', 'administrador@dtel.com', '{bcrypt}$2a$10$X607ZPhQ4EgGNaYKt3n4SQNjIv9zc.VMWEuha7oLAL5IvcL5.');
+INSERT INTO usuario (nome, email, senha) values ('Antonio Carlos', 'antonio.carlos@dtel.com', '{bcrypt}$2a$10$X607ZPhQ4EgGNaYKt3n4SQNjIv9zc.VMWEuha7oLAL5IvcL5.');
 
-INSERT INTO permissao (1, 'ROLE_CADASTRAR_CATEGORIA');
-INSERT INTO permissao (2, 'ROLE_PESQUISAR_CATEGORIA');
+INSERT INTO permissao (descricao) values ('ROLE_CADASTRAR_CATEGORIA');
+INSERT INTO permissao (descricao) values ('ROLE_PESQUISAR_CATEGORIA');
 
-INSERT INTO permissao (3, 'ROLE_CADASTRAR_PESSOA');
-INSERT INTO permissao (4, 'ROLE_PESQUISAR_PESSOA');
-INSERT INTO permissao (5, 'ROLE_REMOVER_PESSOA');
+INSERT INTO permissao (descricao) values ('ROLE_CADASTRAR_PESSOA');
+INSERT INTO permissao (descricao) values ('ROLE_PESQUISAR_PESSOA');
+INSERT INTO permissao (descricao) values ('ROLE_REMOVER_PESSOA');
 
-INSERT INTO permissao (6, 'ROLE_CADASTRAR_LANCAMENTO');
-INSERT INTO permissao (7, 'ROLE_PESQUISAR_LANCAMENTO');
-INSERT INTO permissao (8, 'ROLE_REMOVER_LANCAMENTO');
+INSERT INTO permissao (descricao) values ('ROLE_CADASTRAR_LANCAMENTO');
+INSERT INTO permissao (descricao) values ('ROLE_PESQUISAR_LANCAMENTO');
+INSERT INTO permissao (descricao) values ('ROLE_REMOVER_LANCAMENTO');
 
 INSERT INTO usuario_permissao (id_usuario, id_permissao) values (1, 1);
 INSERT INTO usuario_permissao (id_usuario, id_permissao) values (1, 2);
