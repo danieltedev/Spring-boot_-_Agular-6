@@ -6,11 +6,11 @@ import javax.validation.Valid;
 import com.dtel.springrestfull.springrestfullapi.event.ResourceCreateEvent;
 import com.dtel.springrestfull.springrestfullapi.model.Lancamento;
 import com.dtel.springrestfull.springrestfullapi.repository.LancamentoRepository;
-import com.dtel.springrestfull.springrestfullapi.repository.filter.LancamentoFilter;
-import com.dtel.springrestfull.springrestfullapi.repository.projection.ResumoLancamento;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -35,13 +35,9 @@ public class LancamentoResource {
     private ApplicationEventPublisher publisher;
 
     @GetMapping
-    public Page<Lancamento> pesquisar(LancamentoFilter filter, Pageable pageable) {
-        return lancamentoRepository.filtrar(filter, pageable);
-    }
-
-    @GetMapping(params = "resumo")
-    public Page<ResumoLancamento> resumo(LancamentoFilter filter, Pageable pageable) {
-        return lancamentoRepository.resumo(filter, pageable);
+    public Page<Lancamento> pesquisar(Lancamento lancamento, Pageable pageable) {
+        ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("descricao", m -> m.contains());
+        return lancamentoRepository.findAll(Example.of(lancamento, matcher), pageable);
     }
 
     @PostMapping

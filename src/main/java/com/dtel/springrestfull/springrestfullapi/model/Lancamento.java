@@ -29,10 +29,10 @@ public class Lancamento {
     @NotNull
     private String descricao;
 
-    @Column(name = "data-vencimento")
+    @Column(name = "data_vencimento")
     private LocalDate dataVencimento;
 
-    @Column(name = "data-pagamento")
+    @Column(name = "data_pagamento")
     private LocalDate dataPagamento;
     
     @NotNull
