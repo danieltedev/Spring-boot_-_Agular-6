@@ -18,8 +18,8 @@ CREATE TABLE usuario_permissao (
     FOREIGN KEY (id_permissao) REFERENCES permissao(id)
 );
 
-INSERT INTO usuario (nome, email, senha) values ('Administrador', 'administrador@dtel.com', '{bcrypt}$2a$10$X607ZPhQ4EgGNaYKt3n4SQNjIv9zc.VMWEuha7oLAL5IvcL5.');
-INSERT INTO usuario (nome, email, senha) values ('Antonio Carlos', 'antonio.carlos@dtel.com', '{bcrypt}$2a$10$X607ZPhQ4EgGNaYKt3n4SQNjIv9zc.VMWEuha7oLAL5IvcL5.');
+INSERT INTO usuario (nome, email, senha) values ('Administrador', 'administrador@dtel.com', '{bcrypt}$2a$10$hL7O6oBf2LcXWj2dvcXu/ep2Kxx85hcKxNy3gvcoSfd/WrZyQyiRm');
+INSERT INTO usuario (nome, email, senha) values ('Antonio Carlos', 'antonio.carlos@dtel.com', '{bcrypt}$2a$10$hL7O6oBf2LcXWj2dvcXu/ep2Kxx85hcKxNy3gvcoSfd/WrZyQyiRm');
 
 INSERT INTO permissao (descricao) values ('ROLE_CADASTRAR_CATEGORIA');
 INSERT INTO permissao (descricao) values ('ROLE_PESQUISAR_CATEGORIA');
