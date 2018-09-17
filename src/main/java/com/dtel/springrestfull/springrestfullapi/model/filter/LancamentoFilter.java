@@ -1,15 +1,15 @@
-package com.dtel.springrestfull.springrestfullapi.repository.filter;
+package com.dtel.springrestfull.springrestfullapi.model.filter;
 
 import java.time.LocalDate;
+
+import com.dtel.springrestfull.springrestfullapi.model.Lancamento;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * LancamentoFilter
  */
-public class LancamentoFilter {
-
-    private String descricao;
+public class LancamentoFilter extends Lancamento {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataVencimentoDe;
@@ -43,20 +43,6 @@ public class LancamentoFilter {
      */
     public void setDataVencimentoDe(LocalDate dataVencimentoDe) {
         this.dataVencimentoDe = dataVencimentoDe;
-    }
-
-    /**
-     * @return the descricao
-     */
-    public String getDescricao() {
-        return descricao;
-    }
-    
-    /**
-     * @param descricao the descricao to set
-     */
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     @Override

@@ -1,8 +1,10 @@
-package com.dtel.springrestfull.springrestfullapi.repository.projection;
+package com.dtel.springrestfull.springrestfullapi.model.projection;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
+import com.dtel.springrestfull.springrestfullapi.model.Lancamento;
 import com.dtel.springrestfull.springrestfullapi.model.TipoLancamento;
 
 /**
@@ -20,26 +22,16 @@ public class ResumoLancamento {
     private String categoria;
     private String pessoa;
 
-    public ResumoLancamento(
-        Long id,
-        String descricao,
-        LocalDate dataVencimento,
-        LocalDate dataPagamento,
-        BigDecimal valor,
-        String observacao,
-        TipoLancamento tipo,
-        String categoria,
-        String pessoa
-    ) {
-        this.id = id;
-        this.descricao = descricao;
-        this.dataVencimento = dataVencimento;
-        this.dataPagamento = dataPagamento;
-        this.valor = valor;
-        this.observacao = observacao;
-        this.tipo = tipo;
-        this.categoria = categoria;
-        this.pessoa = pessoa;
+    public ResumoLancamento(Lancamento lancamento) {
+        this.id = lancamento.getId();
+        this.descricao = lancamento.getDescricao();
+        this.dataVencimento = lancamento.getDataVencimento();
+        this.dataPagamento = lancamento.getDataPagamento();
+        this.valor = lancamento.getValor();
+        this.observacao = lancamento.getObservacao();
+        this.tipo = lancamento.getTipo();
+        this.categoria = Objects.isNull(lancamento.getCategoria()) ? null : lancamento.getCategoria().getNome();
+        this.pessoa = Objects.isNull(lancamento.getPessoa()) ? null : lancamento.getPessoa().getNome();
     }
 
     /**
